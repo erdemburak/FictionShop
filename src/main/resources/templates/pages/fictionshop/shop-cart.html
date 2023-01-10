@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fictionshop">
+    <meta name="keywords" content="science fiction, lotr, harry potter, accessory, book">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/fictionshop/icon.png}">
+    <title>Fictionshop- Shop Cart</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/style.css}" type="text/css">
+</head>
+<body>
+
+    <div th:replace="fragments/fictionshop/header"></div>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a th:href="@{/fictionshop/index}"><i class="fa fa-home"></i> Home</a>
+                        <span>Shopping cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Cart Section Begin -->
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cartProduct : ${cartProducts.getProductList()}">
+                                    <td class="cart__product__item">
+                                        <img  th:src="@{'/images/fictionshop/product/cart/'+ ${cartProduct.getProduct().getProductImageName()} }" alt="">
+                                        <div class="cart__product__item__title" >
+                                            <h6> <a href="#"  th:href="@{'/fictionshop/product-details/' + ${cartProduct.getProduct().getId()}}" th:text="${cartProduct.getProduct().getProductName()}">Chain bucket bag</a></h6>
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price" th:text="'$ ' + ${cartProduct.getProduct().getProductPrice()}"></td>
+                                    <td class="cart__quantity" >
+                                        <div class="pro-qty">
+                                            <input type="text" th:value="${cartProduct.getPiece()}">
+                                        </div>
+                                    </td>
+                                    <td class="cart__total" th:text="'$ ' + (${cartProduct.getPiece()} * ${cartProduct.getProduct().getProductPrice()})"></td>
+                                    <td class="cart__close" th:onclick="'window.location.href=\'/fictionshop/shop-cart/remove/' + ${cartProduct.getShoppingCartItemId()}+'\''"><span class="icon_close"></span></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn">
+                        <a th:href="@{/fictionshop/shop}">Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn update__btn">
+                        <a href="#"><span class="icon_loading"></span> Update cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="discount__content">
+                        <h6>Discount codes</h6>
+                        <form action="#" th:action="@{/fictionshop/shop-cart/discount}" method="post" >
+                            <input type="text" name="discountCode" id="discountCode" placeholder="Enter your coupon code">
+                            <button type="submit" class="site-btn">Apply</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-2">
+                    <div class="cart__total__procced">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span th:text="'$ ' + ${cartItemPrice}"></span></li>
+                            <li>Discount <span th:text="'$ ' + ${discountPrice}"></span></li>
+                            <li>Total <span th:text="'$ ' + ${totalCartItemPrice}"></span></li>
+                        </ul>
+                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="index.html"><img src="../../../static/images/fictionshop/logo.png" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        cilisis.</p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="../../../static/images/fictionshop/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="../../../static/images/fictionshop/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="../../../static/images/fictionshop/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="../../../static/images/fictionshop/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="../../../static/images/fictionshop/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script th:src="@{/js/fictionshop/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/fictionshop/bootstrap.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/fictionshop/mixitup.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.countdown.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.slicknav.js}"></script>
+    <script th:src="@{/js/fictionshop/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/js/fictionshop/main.js}"></script>
+</body>
+</html>

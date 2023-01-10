@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!--Head-->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <link rel="icon" type="image/x-icon" th:href="@{/images/fictionshop/icon.png}">
+  <meta name="author" content="" />
+  <title>Dashboard - FictionShop Admin</title>
+  <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/styles.css}" rel="stylesheet" />
+  <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <!--Header-->
+  <div th:replace="fragments/admin/header"></div>
+
+  <div id="layoutSidenav">
+    <!--Sidebar-->
+    <div th:replace="fragments/admin/sidebar"></div>
+    <div id="layoutSidenav_content">
+      <!--Dynamic Content-->
+      <main layout:fragment="content">
+
+      </main>
+      <!--Footer-->
+      <div th:replace="fragments/admin/footer"></div>
+    </div>
+  </div>
+
+
+  <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
+  <script th:src="@{/js/admin/scripts.js}"></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js}" crossorigin="anonymous"></script>
+  <script th:src="@{/assets/admin/demo/chart-area-demo.js}"></script>
+  <script th:src="@{/assets/admin/demo/chart-bar-demo.js}"></script>
+  <script th:src="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest}" crossorigin="anonymous"></script>
+  <script th:src="@{/js/admin/datatables-simple-demo.js}"></script>
+</body>
+</html>

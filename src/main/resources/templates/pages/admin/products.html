@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/admin-dashboard}">
+
+<head>
+  <title>Products - FictionShop Admin</title>
+</head>
+
+<body>
+
+<main layout:fragment="content">
+  <div class="container-fluid px-4 mt-4 col-md-10">
+    <h1 class="mt-5">Products</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a th:href="@{/admin/index}">Dashboard</a></li>
+      <li class="breadcrumb-item active">Products</li>
+    </ol>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Product Table
+      </div>
+      <div class="card-body">
+        <table id="datatablesSimple">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Picture Name</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Picture Name</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <tr th:each = "product : ${productList}">
+            <td th:text="${product.id}">id</td>
+            <td th:text="${product.productName}">name</td>
+            <td th:text="${product.productDescription}">description</td>
+            <td th:text="${product.productType}">type</td>
+            <td th:text="${product.productPrice}">price</td>
+            <td th:text="${product.productImageName}">picture name</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>

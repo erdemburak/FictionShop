@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fictionshop">
+    <meta name="keywords" content="science fiction, lotr, harry potter, accessory, book">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/fictionshop/icon.png}">
+    <title>Fictionshop - Shop Page</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/style.css}" type="text/css">
+</head>
+<body>
+
+    <div th:replace="fragments/fictionshop/header"></div>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a th:href="@{/fictionshop/index}"><i class="fa fa-home"></i> Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Categories</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a data-toggle="collapse" data-target="#collapseOne">Accessories</a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="#">Harry Potter</a></li>
+                                                    <li><a href="#">Lord of The Rings</a></li>
+                                                    <li><a href="#">Marvel</a></li>
+                                                    <li><a href="#">Star Wars</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseTwo">Books</a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="#">Harry Potter</a></li>
+                                                    <li><a href="#">Lord of The Rings</a></li>
+                                                    <li><a href="#">Marvel</a></li>
+                                                    <li><a href="#">Star Wars</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseThree">Figures</a>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="#">Harry Potter</a></li>
+                                                    <li><a href="#">Lord of The Rings</a></li>
+                                                    <li><a href="#">Marvel</a></li>
+                                                    <li><a href="#">Star Wars</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseFour">Clothes</a>
+                                        </div>
+                                        <div id="collapseFour" class="collapse" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="#">Harry Potter</a></li>
+                                                    <li><a href="#">Lord of The Rings</a></li>
+                                                    <li><a href="#">Marvel</a></li>
+                                                    <li><a href="#">Star Wars</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseFive">Decorations</a>
+                                        </div>
+                                        <div id="collapseFive" class="collapse" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="#">Harry Potter</a></li>
+                                                    <li><a href="#">Lord of The Rings</a></li>
+                                                    <li><a href="#">Marvel</a></li>
+                                                    <li><a href="#">Star Wars</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+
+                        <form class="col-lg-4 col-md-6" th:each="product : ${products}" >
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" th:attr="data-setbg= @{'/images/fictionshop/product/'+ ${product.getProductImageName()}}">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a th:href="@{'/images/fictionshop/product/big/' + ${product.getProductImageName()}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#" ><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#"  th:href="@{'/fictionshop/product-details/' + ${product.getId()}}" th:text="${product.getProductName()}"></a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price" th:text="'$ ' + ${product.getProductPrice()}"></div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-1.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-2.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-3.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-4.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-5.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" th:attr="data-setbg = @{/images/fictionshop/instagram/insta-6.jpg}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ fictionshop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+    <div th:replace="fragments/fictionshop/footer"></div>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script th:src="@{/js/fictionshop/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/fictionshop/bootstrap.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/fictionshop/mixitup.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.countdown.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.slicknav.js}"></script>
+    <script th:src="@{/js/fictionshop/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/fictionshop/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/js/fictionshop/main.js}"></script>
+</body>
+</html>

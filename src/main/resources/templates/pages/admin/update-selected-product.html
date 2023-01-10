@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/admin-dashboard}">
+<head>
+    <title>Update Product - FictionShop Admin</title>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <div class="container-fluid px-4 mt-4 col-md-10" >
+        <h1 class="mt-5">Update</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a th:href="@{/admin/index}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/admin/product/}">Products</a></li>
+            <li class="breadcrumb-item active">Update</li>
+        </ol>
+        <div class="col-md-6">
+            <label for="validationServer06" class="form-label">Products</label>
+            <form  th:action="@{/admin/product/update-selected}" th:object="${selectedProduct}">
+                <div class="input-group">
+                    <select class="form-select" id="validationServer06" required>
+                        <option selected disabled th:text="*{id + ' - ' + productName}"></option>
+                        <option th:each="product : ${productList}" th:text="${product.id + ' - ' + product.productName}"></option>
+                    </select>
+                    <button class="btn btn-outline-primary col-2" disabled>Selected</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="mt-4 ">
+                <form id="update_form" class="row g-3" th:action="@{/admin/product/update-selected}" th:method="post"  th:object="${updatedProduct}" enctype="multipart/form-data">
+
+                    <div class="col-md-4">
+                        <label for="validationServer01" class="form-label">Name</label>
+                        <input type="text" th:field="${updatedProduct.productName}" th:value="${selectedProduct.productName}" class="form-control" id="validationServer01" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="validationServer04" class="form-label">Type</label>
+                        <select class="form-select" th:field="${updatedProduct.productType}" id="validationServer04" required>
+                            <option selected disabled th:value="B" th:text="${selectedProduct.productType}"></option>
+                            <option th:value="ACCESSORY" th:text="ACCESSORY"></option>
+                            <option th:value="BOOK" th:text="BOOK"></option>
+                            <option th:value="FIGURE" th:text="FIGURE"></option>
+                            <option th:value="POSTER" th:text="POSTER"></option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="validationServer05" class="form-label">Price</label>
+                        <div class="input-group has-validation">
+                            <input type="text" th:field="${updatedProduct.productPrice}" th:value="${selectedProduct.productPrice}" class="form-control" id="validationServer05" required>
+                            <span class="input-group-text" id="inputGroupPrepend3">$</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="validationServer03" class="form-label">Description</label>
+                        <input type="text" th:field="${updatedProduct.productDescription}" th:value="${selectedProduct.productDescription}" class="form-control" id="validationServer03" required>
+                    </div>
+
+                    <div class=" col-md-6">
+                        <label for="imageUpload" class="form-label">Image</label>
+                        <input type="file" name="imageUpload" accept="image/*" id="imageUpload" class="form-control"  required>
+                    </div>
+
+
+                    <div class="col-12" align="right" >
+                        <button class="btn btn-primary col-1" type="submit" >Update</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

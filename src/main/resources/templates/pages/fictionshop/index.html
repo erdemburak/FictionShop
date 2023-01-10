@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fictionshop">
+    <meta name="keywords" content="science fiction, lotr, harry potter, accessory, book">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/fictionshop/icon.png}">
+    <title>Fictionshop</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/ficrionshop/style.css}" type="text/css">
+
+</head>
+<body>
+
+    <div th:replace="fragments/fictionshop/header"></div>
+
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                    <div class="categories__item categories__large__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-1.jpg}">
+                        <div class="categories__text">
+                            <h1>Accessories</h1>
+                            <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
+                                edolore magna aliquapendisse ultrices gravida.</p>
+                            <a th:href="@{/fictionshop/type/ACCESSORY}">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-2.jpg}">
+                                <div class="categories__text">
+                                    <h4>Books</h4>
+                                    <p>358 items</p>
+                                    <a th:href="@{/fictionshop/type/BOOK}">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-3.jpg}">
+                                <div class="categories__text">
+                                    <h4>Figures</h4>
+                                    <p>273 items</p>
+                                    <a th:href="@{/fictionshop/type/FIGURE}">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-4.jpg}">
+                                <div class="categories__text">
+                                    <h4>Clothes</h4>
+                                    <p>159 items</p>
+                                    <a th:href="@{/fictionshop/type/CLOTHES}">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-5.jpg}">
+                                <div class="categories__text">
+                                    <h4>Decoration</h4>
+                                    <p>792 items</p>
+                                    <a th:href="@{/fictionshop/type/DECORATION}">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="section-title">
+                        <h4>New product</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".BOOK">Books</li>
+                        <li data-filter=".FIGURE">Figures</li>
+                        <li data-filter=".ACCESSORY">Accessories</li>
+                        <li data-filter=".CLOTHES">Clothes</li>
+                        <li data-filter=".DECORATION">Decoration</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row property__gallery">
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mix ACCESSORY" th:each="product : ${products}">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" th:attr="data-setbg= @{'/images/fictionshop/product/'+ ${product.getProductImageName()}}" >
+                            <ul class="product__hover">
+                                <li><a th:href="@{'/images/fictionshop/product/big/' + ${product.getProductImageName()}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a th:href="@{'/fictionshop/product-details/{id}' (id=${product.getId()})}" th:text="${product.getProductName()}"></a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price" th:text="'$ ' + ${product.getProductPrice()}"> </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner set-bg" th:attr="data-setbg= @{/images/fictionshop/banner/banner-1.jpg}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-8 m-auto">
+                    <div class="banner__slider owl-carousel">
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span>Accessories</span>
+                                <h1>Lord Of The Rings</h1>
+                                <a href="#">Shop now</a>
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span>Books</span>
+                                <h1>Harry Potter</h1>
+                                <a href="#">Shop now</a>
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span>Figures</span>
+                                <h1>Lord Of The Rings</h1>
+                                <a href="#">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+
+
+
+    <div th:replace="fragments/fictionshop/footer"></div>
+
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+
+<!-- Js Plugins -->
+<script th:src="@{/js/fictionshop/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/fictionshop/bootstrap.min.js}"></script>
+<script th:src="@{/js/fictionshop/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/js/fictionshop/jquery-ui.min.js}"></script>
+<script th:src="@{/js/fictionshop/mixitup.min.js}"></script>
+<script th:src="@{/js/fictionshop/jquery.countdown.min.js}"></script>
+<script th:src="@{/js/fictionshop/jquery.slicknav.js}"></script>
+<script th:src="@{/js/fictionshop/owl.carousel.min.js}"></script>
+<script th:src="@{/js/fictionshop/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/js/fictionshop/main.js}"></script>
+</body>
+</html>
