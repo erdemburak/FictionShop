@@ -62,8 +62,8 @@
                             </thead>
                             <tbody>
                                 <tr th:each="cartProduct : ${cartProducts.getProductList()}">
-                                    <td class="cart__product__item">
-                                        <img  th:src="@{'/images/fictionshop/product/cart/'+ ${cartProduct.getProduct().getProductImageName()} }" alt="">
+                                    <td class="cart__product__item"><a th:href="@{'/fictionshop/product-details/' + ${cartProduct.getProduct().getId()}}">
+                                        <img  th:src="@{'/images/fictionshop/product/cart/'+ ${cartProduct.getProduct().getProductImageName()} }" alt=""></a>
                                         <div class="cart__product__item__title" >
                                             <h6> <a href="#"  th:href="@{'/fictionshop/product-details/' + ${cartProduct.getProduct().getId()}}" th:text="${cartProduct.getProduct().getProductName()}">Chain bucket bag</a></h6>
                                             <div class="rating">
