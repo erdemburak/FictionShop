@@ -35,50 +35,49 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 p-0">
-                    <div class="categories__item categories__large__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-1.jpg}">
+                    <div class="categories__item categories__large__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-1.jpg}" th:onclick="'window.location.href=\'/fictionshop/type/ACCESSORY'+'\''">
                         <div class="categories__text">
                             <h1>Accessories</h1>
-                            <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
-                                edolore magna aliquapendisse ultrices gravida.</p>
-                            <a th:href="@{/fictionshop/type/ACCESSORY}">Shop now</a>
+                            <p>One Ring to rule them all, One Ring to find them, One Ring to bring them all, and in the darkness bind them</p>
+                            <a href="#">Shop now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-2.jpg}">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-2.jpg}" th:onclick="'window.location.href=\'/fictionshop/type/BOOK'+'\''">
                                 <div class="categories__text">
                                     <h4>Books</h4>
                                     <p>358 items</p>
-                                    <a th:href="@{/fictionshop/type/BOOK}">Shop now</a>
+                                    <a href="#">Shop now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-3.jpg}">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-3.jpg}" th:onclick="'window.location.href=\'/fictionshop/type/FIGURE'+'\''">
                                 <div class="categories__text">
                                     <h4>Figures</h4>
                                     <p>273 items</p>
-                                    <a th:href="@{/fictionshop/type/FIGURE}">Shop now</a>
+                                    <a href="#">Shop now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-4.jpg}">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-4.jpg}" th:onclick="'window.location.href=\'/fictionshop/type/CLOTHES'+'\''">
                                 <div class="categories__text">
                                     <h4>Clothes</h4>
                                     <p>159 items</p>
-                                    <a th:href="@{/fictionshop/type/CLOTHES}">Shop now</a>
+                                    <a href="#">Shop now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-5.jpg}">
+                            <div class="categories__item set-bg" th:attr="data-setbg = @{/images/fictionshop/categories/category-5.jpg}" th:onclick="'window.location.href=\'/fictionshop/type/DECORATION'+'\''">
                                 <div class="categories__text">
                                     <h4>Decoration</h4>
                                     <p>792 items</p>
-                                    <a th:href="@{/fictionshop/type/DECORATION}">Shop now</a>
+                                    <a href="#">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -112,13 +111,13 @@
             <div class="row property__gallery">
 
                 <div class="col-lg-3 col-md-4 col-sm-6 mix ACCESSORY" th:each="product : ${products}">
-                    <div class="product__item">
+                    <div class="product__item" th:onclick="'window.location.href=\'/fictionshop/product-details/'+ ${product.getId()}+'\''">
                         <div class="product__item__pic set-bg" th:attr="data-setbg= @{'/images/fictionshop/product/'+ ${product.getProductImageName()}}" >
-                            <ul class="product__hover">
+                            <!--<ul class="product__hover">
                                 <li><a th:href="@{'/images/fictionshop/product/big/' + ${product.getProductImageName()}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                         <div class="product__item__text">
                             <h6><a th:href="@{'/fictionshop/product-details/{id}' (id=${product.getId()})}" th:text="${product.getProductName()}"></a></h6>

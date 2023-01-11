@@ -140,14 +140,14 @@
                     <div class="row">
 
                         <form class="col-lg-4 col-md-6" th:each="product : ${products}" >
-                            <div class="product__item">
+                            <div class="product__item" th:onclick="'window.location.href=\'/fictionshop/product-details/'+ ${product.getId()}+'\''">
                                 <div class="product__item__pic set-bg" th:attr="data-setbg= @{'/images/fictionshop/product/'+ ${product.getProductImageName()}}">
                                     <div class="label new">New</div>
-                                    <ul class="product__hover">
+                                    <!--<ul class="product__hover">
                                         <li><a th:href="@{'/images/fictionshop/product/big/' + ${product.getProductImageName()}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                         <li><a href="#" ><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="#"  th:href="@{'/fictionshop/product-details/' + ${product.getId()}}" th:text="${product.getProductName()}"></a></h6>

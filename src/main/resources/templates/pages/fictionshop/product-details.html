@@ -60,7 +60,6 @@
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img" th:src="@{'/images/fictionshop/product/detailBig/'+ ${selectedProduct.getProductImageName()} }"  alt="">
-
                             </div>
                         </div>
                     </div>
@@ -213,13 +212,13 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix ACCESSORY" th:each="product : ${products}">
-                    <div class="product__item">
+                    <div class="product__item" th:onclick="'window.location.href=\'/fictionshop/product-details/'+ ${product.getId()}+'\''">
                         <div class="product__item__pic set-bg" th:attr="data-setbg= @{'/images/fictionshop/product/'+ ${product.getProductImageName()}}" >
-                            <ul class="product__hover">
+                            <!--<ul class="product__hover">
                                 <li><a th:href="@{'/images/fictionshop/product/big/' + ${product.getProductImageName()}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                         <div class="product__item__text">
                             <h6><a th:href="@{'/fictionshop/product-details/{id}' (id=${product.getId()})}" th:text="${product.getProductName()}"></a></h6>
