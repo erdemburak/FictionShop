@@ -63,14 +63,46 @@ public class FictionshopShopController {
         shoppingCart.setProductList(new ArrayList<ShoppingCartItem>());
     }
 
+    public void discountCheck(){
+        if(this.discountCode.equals("fiction50")){
+            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.5);
+            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
+        }else if(this.discountCode.equals("fiction25")){
+            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.25);
+            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
+        }
+    }
+
     // Add product to Cart
     @PostMapping(value = "/shop")
     public String addToCart(@ModelAttribute("shoppingCartItem") ShoppingCartItem shoppingCartItem, Model model) throws Throwable {
         System.out.println(shoppingCartItem.getPiece());
+
         shoppingCartItem.setProductId(selectedProduct.getId());
 
         ProductDto productDto = productService.getProductById(shoppingCartItem.getProductId()).getBody();
         shoppingCartItem.setProduct(productDto);
+
+        if(!shoppingCart.getProductList().isEmpty()) {
+            for (int i = 0; i < shoppingCart.getProductList().size(); i++) {
+                ShoppingCartItem newSCI = shoppingCart.getProductList().get(i);
+                if (newSCI.getProductId() == shoppingCartItem.getProductId()) {
+
+                    newSCI.setPiece(newSCI.getPiece() + shoppingCartItem.getPiece());
+                    shoppingCart.getProductList().set(i, newSCI);
+                    shoppingCart.setTotalCartItems(shoppingCart.getTotalCartItems() + shoppingCartItem.getPiece());
+
+                    double newPrice = newSCI.getPiece() + (shoppingCartItem.getPiece() * newSCI.getProduct().getProductPrice());
+                    shoppingCart.setCartItemPrice(shoppingCart.getCartItemPrice() + newPrice);
+                    shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice());
+
+                    System.out.println(shoppingCart);
+                    discountCheck();
+
+                    return "redirect:/fictionshop/product-details/" + shoppingCartItem.getProductId();
+                }
+            }
+        }
 
         shoppingCart.getProductList().add(shoppingCartItem);
 
@@ -85,13 +117,7 @@ public class FictionshopShopController {
         shoppingCart.setTotalCartItems(productPiece);
         System.out.println(shoppingCart);
 
-        if(this.discountCode.equals("fiction50")){
-            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.5);
-            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
-        }else if(this.discountCode.equals("fiction25")){
-            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.25);
-            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
-        }
+        discountCheck();
 
         model.addAttribute("products", productService.getAllProducts());
         selectedProduct = new ProductDto();
@@ -120,13 +146,7 @@ public class FictionshopShopController {
 
         shoppingCart.getProductList().remove(sci);
 
-        if(this.discountCode.equals("fiction50")){
-            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.5);
-            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
-        }else if(this.discountCode.equals("fiction25")){
-            shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.25);
-            shoppingCart.setTotalCartItemPrice(shoppingCart.getCartItemPrice() - shoppingCart.getDiscount());
-        }
+        discountCheck();
 
         return "redirect:/fictionshop/shop-cart";
     }
