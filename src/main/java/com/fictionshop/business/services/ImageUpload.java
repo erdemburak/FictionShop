@@ -11,6 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 public class ImageUpload {
 
+    // Product images are shaped in predetermined sizes to be used within the site.
     public static void imageUpload(String imageFileName, MultipartFile imageFile) throws IOException {
         String uploadDirectory = "src/main/resources/static/images/fictionshop/product";
         saveFile(uploadDirectory, imageFileName, imageFile);
