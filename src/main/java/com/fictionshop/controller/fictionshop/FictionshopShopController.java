@@ -63,6 +63,7 @@ public class FictionshopShopController {
         shoppingCart.setProductList(new ArrayList<ShoppingCartItem>());
     }
 
+    // Discount check after a discountCode used
     public void discountCheck(){
         if(this.discountCode.equals("fiction50")){
             shoppingCart.setDiscount(shoppingCart.getCartItemPrice() * 0.5);
@@ -125,7 +126,7 @@ public class FictionshopShopController {
         return "redirect:/fictionshop/product-details/" + shoppingCartItem.getProductId();
     }
 
-
+    //Shopping Cart Page
     @GetMapping(value = "/shop-cart")
     public String shopCart(Model model) {
         model.addAttribute("cartProducts", shoppingCart);
@@ -135,6 +136,7 @@ public class FictionshopShopController {
         return "pages/fictionshop/shop-cart";
     }
 
+    // Remove From ShoppingCartItems
     @GetMapping(value = "/shop-cart/remove/{shopCartItemId}")
     public String removeShopCartItem(@PathVariable Long shopCartItemId){
         ShoppingCartItem sci = shoppingCart.getProductList().stream().filter(shoppingCartItem -> shoppingCartItem.getShoppingCartItemId().equals(shopCartItemId)).findFirst().get();
@@ -151,6 +153,7 @@ public class FictionshopShopController {
         return "redirect:/fictionshop/shop-cart";
     }
 
+    // Discount with discountCode
     @PostMapping(value = "/shop-cart/discount")
     public String discountButton(@RequestParam("discountCode") String code, Model model){
         this.discountCode = code;
@@ -176,7 +179,7 @@ public class FictionshopShopController {
     @PostMapping(value = "/shop-cart/updateCart")
     public String updateCart(@RequestParam("quantityChange") Integer newQuantity){
 
-
+        //Tamamlanacak..
 
 
         return "redirect:/fictionshop/shop-cart";

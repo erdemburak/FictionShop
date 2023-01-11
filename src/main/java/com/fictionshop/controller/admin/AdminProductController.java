@@ -34,12 +34,14 @@ public class AdminProductController {
     }
 
     // Create Start ----
+    // http://localhost:8080/admin/product/create
     @GetMapping(value = "/create")
     public String createProductPage(Model model){
         model.addAttribute("newProduct", new ProductDto());
         return "pages/admin/create-product";
     }
 
+    // This method goes to Product List after a product created
     @PostMapping(value = "/")
     public String postProduct(@Valid @ModelAttribute("newProduct") ProductDto productDto, BindingResult bindingResult, Model model,@RequestParam(value = "imageUpload") MultipartFile file) throws IOException {
         if(bindingResult.hasErrors()){
@@ -51,8 +53,6 @@ public class AdminProductController {
 
         productService.createProduct(productDto,file);
 
-
-
         model.addAttribute("productList", productService.getAllProducts());
         System.out.println(productDto);
         return "redirect:/admin/product/";
@@ -60,7 +60,7 @@ public class AdminProductController {
     // Create End -----
 
     // Update Start ----
-
+    // http://localhost:8080/admin/product/update-select
     @GetMapping(value = "/update-select")
     public String updateGetProductsPage(Model model){
         model.addAttribute("selectProduct" , new ProductDto());
@@ -68,6 +68,7 @@ public class AdminProductController {
         return "pages/admin/select-update-product";
     }
 
+    // Firstly with this method we are selecting a product and getting its information to see what we are going to update
     @PostMapping (value = "/update-select")
     public String updateProductdenemePage(@Valid @RequestBody @ModelAttribute("selectProduct") ProductDto productDto, BindingResult bindingResult, Model model) throws Throwable {
         if(bindingResult.hasErrors()){
@@ -86,11 +87,13 @@ public class AdminProductController {
         return "pages/admin/update-selected-product";
     }
 
+    // We sent the information of the selected product to Frontend
     @GetMapping(value = "/update-selected")
     public String selectedProduct(Model model){
         return "/pages/admin/update-selected-product";
     }
 
+    // Update selected product
     @PostMapping (value = "/update-selected")
     public String updateProductPage(@Valid @RequestBody @ModelAttribute("updatedProduct") ProductDto productDto, BindingResult bindingResult, Model model, @RequestParam(value = "imageUpload") MultipartFile file) throws Throwable {
         if(bindingResult.hasErrors()){
@@ -109,7 +112,7 @@ public class AdminProductController {
     // Update End ----
 
     // Delete Start ----
-
+    // http://localhost:8080/admin/product/delete-select
     @GetMapping(value = "/delete-select")
     public String deleteSelectedProduct(Model model){
         model.addAttribute("deleteProduct" , new ProductDto());
