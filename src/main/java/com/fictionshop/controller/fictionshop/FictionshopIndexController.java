@@ -27,6 +27,7 @@ public class FictionshopIndexController {
         return "pages/fictionshop/contact";
     }
 
+
     @GetMapping(value = "/type/{productType}")
     public String pageByType(@PathVariable("productType") PRODUCT_TYPE productType, Model model) {
         model.addAttribute("products", productService.getProductsByType(productType));

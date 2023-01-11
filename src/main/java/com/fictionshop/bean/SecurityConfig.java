@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
                 .antMatchers("/admin/**").hasRole("admin_role").and().formLogin()
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .and().logout().logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
     }
